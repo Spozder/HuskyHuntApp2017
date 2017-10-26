@@ -14,4 +14,9 @@
     Take a look at the <code>src/pages/</code> directory to add or change tabs,
     update any existing page or create new pages.
   </p>
+  <button ion-button (click)="increment()">Increment</button>
+  <div>Current Count: {{ counter | async }}</div>
+  <button ion-button (click)="decrement()">Decrement</button>
+
+  <button ion-button (click)="reset()">Reset</button>
 </ion-content>

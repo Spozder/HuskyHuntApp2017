@@ -2,5 +2,7 @@
   "name": "huskyhuntapp2-0",
   "app_id": "51276015",
   "type": "ionic-angular",
-  "integrations": {}
+  "integrations": {
+    "cordova": {}
+  }
 }
