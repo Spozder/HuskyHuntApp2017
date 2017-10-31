@@ -3,36 +3,38 @@ import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 
-import { AboutPage } from '../pages/about/about';
+import { LocationsPage } from '../pages/locations/locations';
 import { ContactPage } from '../pages/contact/contact';
-import { HomePage } from '../pages/home/home';
+import { HintsPage } from '../pages/hints/hints';
 import { TabsPage } from '../pages/tabs/tabs';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { StoreModule } from '@ngrx/store';
-import { counterReducer } from '../state/counter';
+import { initialAppState, appStateReducers } from '../common/state/app.state';
 
 @NgModule({
   declarations: [
     MyApp,
-    AboutPage,
+    LocationsPage,
     ContactPage,
-    HomePage,
+    HintsPage,
     TabsPage
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    StoreModule.forRoot({ counter: counterReducer })
+    StoreModule.forRoot(appStateReducers, {
+      initialState: initialAppState
+    })
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    AboutPage,
+    LocationsPage,
     ContactPage,
-    HomePage,
+    HintsPage,
     TabsPage
   ],
   providers: [

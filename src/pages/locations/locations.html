@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Locations
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <h2>Location List:</h2>
+
+  <ion-list>
+    <button ion-item *ngFor="let loc of locations | async;trackBy: locationTrackByFn">
+      <p>
+        {{loc.hint.id}}: {{loc.name}}
+      </p>
+      <p>
+        {{loc.address}}
+      </p>
+    </button>
+  </ion-list>
+
+</ion-content>
