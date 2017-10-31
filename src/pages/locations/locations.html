@@ -7,8 +7,6 @@
 </ion-header>
 
 <ion-content padding>
-  <h2>Location List:</h2>
-
   <ion-list>
     <button ion-item *ngFor="let loc of locations | async;trackBy: locationTrackByFn">
       <p>
