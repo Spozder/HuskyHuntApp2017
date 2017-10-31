@@ -1,10 +1,10 @@
 import { Hint, mockHints } from './hint.model'
 
 export interface Location {
-    name: String;
+    name: string;
     lat: number;
     lng: number;
-    address: String;
+    address: string;
     hint: Hint;
     assignment: number;
 }

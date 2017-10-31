@@ -3,8 +3,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 
+import { GoogleMaps } from '@ionic-native/google-maps';
+
 import { LocationsPage } from '../pages/locations/locations';
-import { ContactPage } from '../pages/contact/contact';
+import { MapPage } from '../pages/map/map';
 import { HintsPage } from '../pages/hints/hints';
 import { TabsPage } from '../pages/tabs/tabs';
 
@@ -18,7 +20,7 @@ import { initialAppState, appStateReducers } from '../common/state/app.state';
   declarations: [
     MyApp,
     LocationsPage,
-    ContactPage,
+    MapPage,
     HintsPage,
     TabsPage
   ],
@@ -33,11 +35,12 @@ import { initialAppState, appStateReducers } from '../common/state/app.state';
   entryComponents: [
     MyApp,
     LocationsPage,
-    ContactPage,
+    MapPage,
     HintsPage,
     TabsPage
   ],
   providers: [
+    GoogleMaps,
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
