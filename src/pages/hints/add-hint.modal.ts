@@ -1,5 +1,6 @@
 import { Observable } from 'rxjs/Observable';
 import { Component, ViewChild, ElementRef } from '@angular/core';
+import {Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { Store } from '@ngrx/store';
 
 import { NavController, ModalController, NavParams, ViewController } from 'ionic-angular';
@@ -15,13 +16,18 @@ import { OpenNewHintModalAction, CloseNewHintModalAction } from '../../common/st
 })
 export class AddHintModal {
     private newHint: Hint;
+    private newHintFormGroup: FormGroup;
 
-    constructor(private store: Store<AppState>, public viewCtrl: ViewController) {
+    constructor(private formBuilder: FormBuilder, private store: Store<AppState>, public viewCtrl: ViewController) {
         this.store.select('hint', 'newHintModalOpen').subscribe((state: boolean) => {
             if (!state) {
                 this.viewCtrl.dismiss();
             }
-        })
+        });
+        this.newHintFormGroup = this.formBuilder.group({
+            id: [0, Validators.required],
+            text: ['', Validators.required],
+        });
     }
 
     dismiss() {
