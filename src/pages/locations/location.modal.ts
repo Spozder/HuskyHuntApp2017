@@ -15,21 +15,21 @@ declare var google;
 @Component({
     selector: 'location-details-modal',
     templateUrl: 'location.modal.html'
-  })
-  export class LocationDetailsModal {
+})
+export class LocationDetailsModal {
     private loc: Location;
     @ViewChild("locMap") mapElement: ElementRef;
     locMap: any;
 
     private marker: any;
-  
+
     constructor(params: NavParams, private store: Store<AppState>, public viewCtrl: ViewController) {
-      this.loc = params.get('location');
-      this.store.select('location', 'detailsModal').subscribe((state: LocationDetailsModalState) => {
-          if (!state.open) {
-              this.viewCtrl.dismiss();
-          }
-      });
+        this.loc = params.get('location');
+        this.store.select('location', 'detailsModal').subscribe((state: LocationDetailsModalState) => {
+            if (!state.open) {
+                this.viewCtrl.dismiss();
+            }
+        });
     }
 
     ionViewDidLoad() {
@@ -59,12 +59,12 @@ declare var google;
             });
         });
     }
-  
+
     dismiss() {
-      this.store.dispatch(new CloseLocationModalAction());
+        this.store.dispatch(new CloseLocationModalAction());
     }
 
     navigateToLoc() {
         window.open('http://maps.google.com?q=' + this.loc.address, '_system');
     }
-  }
+}

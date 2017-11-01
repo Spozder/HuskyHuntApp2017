@@ -10,7 +10,7 @@
   <ion-list>
     <button ion-item *ngFor="let loc of locations | async;trackBy: locationTrackByFn" (click)="openModal(loc)">
       <p>
-        {{loc.hint.id}}: {{loc.name}}
+        <strong>{{loc.hint.id}}</strong>: {{loc.name}}
       </p>
       <p>
         {{loc.address}}
