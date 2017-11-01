@@ -23,7 +23,6 @@ export class LocationsPage {
     public navCtrl: NavController, private store: Store<AppState>) {
       this.locations = this.store.select('location', 'locationList');
       this.store.select('location', 'detailsModal').subscribe((modalState: LocationDetailsModalState) => {
-        console.log("Detected change to location modal state");
         if (modalState.open) {
           const locationDetailsModal = this.modalCtrl.create(LocationDetailsModal, {location: modalState.loc});
           locationDetailsModal.present();
@@ -36,7 +35,6 @@ export class LocationsPage {
   }
 
   openModal(loc: Location) {
-    console.log("Tried to open modal for location: " + loc.name);
     this.store.dispatch(new OpenLocaitonModalAction(loc));
   }
 

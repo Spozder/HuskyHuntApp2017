@@ -1,7 +1,7 @@
 <ion-header>
     <ion-toolbar>
       <ion-title>
-        Description
+        {{loc.hint.id}}: {{loc.name}}
       </ion-title>
       <ion-buttons start>
         <button ion-button (click)="dismiss()">
@@ -13,10 +13,10 @@
   </ion-header>
   
   <ion-content>
-    <ion-list>
-        <ion-item>
-          <h2>{{loc.name}}</h2>
-          <p>{{loc.address}}</p>
-        </ion-item>
-    </ion-list>
+    <div #locMap id="locMap"></div>
+    <div id="locInfo">
+        <h2>{{loc.address}}</h2>
+        <button ion-button round>Navigate</button> <br/>
+        <button ion-button round>Found It! Upload Picture</button>
+    </div>
   </ion-content>
