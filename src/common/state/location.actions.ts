@@ -1,14 +1,23 @@
 import { Action } from '@ngrx/store';
+import { Location } from '../models/location.model';
 
 export const LocationActionTypes = {
-    CLUE_BLANK: '[Location] Blank Action'
+    OPEN_MODAL: '[Location] Open Location Details Modal',
+    CLOSE_MODAL: '[Location] Close Location Details Modal'
 };
 
-export class BlankLocationAction implements Action {
-    readonly type = LocationActionTypes.CLUE_BLANK;
+export class OpenLocaitonModalAction implements Action {
+    readonly type = LocationActionTypes.OPEN_MODAL;
+    
+    constructor(public payload: Location) {
+    }
+}
+
+export class CloseLocationModalAction implements Action {
+    readonly type = LocationActionTypes.CLOSE_MODAL;
 
     constructor() {
     }
 }
 
-export type LocationAction = BlankLocationAction;
+export type LocationAction = OpenLocaitonModalAction | CloseLocationModalAction;

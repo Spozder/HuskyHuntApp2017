@@ -4,6 +4,7 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 
 import { LocationsPage } from '../pages/locations/locations';
+import { LocationDetailsModal } from '../pages/locations/location.modal';
 import { MapPage } from '../pages/map/map';
 import { HintsPage } from '../pages/hints/hints';
 import { TabsPage } from '../pages/tabs/tabs';
@@ -20,7 +21,8 @@ import { initialAppState, appStateReducers } from '../common/state/app.state';
     LocationsPage,
     MapPage,
     HintsPage,
-    TabsPage
+    TabsPage,
+    LocationDetailsModal
   ],
   imports: [
     BrowserModule,
@@ -35,7 +37,8 @@ import { initialAppState, appStateReducers } from '../common/state/app.state';
     LocationsPage,
     MapPage,
     HintsPage,
-    TabsPage
+    TabsPage,
+    LocationDetailsModal
   ],
   providers: [
     StatusBar,

@@ -16,6 +16,8 @@ export class MapPage {
   @ViewChild("map") mapElement: ElementRef;
   map: any;
 
+  private markerList: any[] = [];
+
   constructor(public navCtrl: NavController, private appStore: Store<AppState>) {
   }
 
@@ -40,10 +42,10 @@ export class MapPage {
       google.maps.event.addListenerOnce(this.map, 'idle', () => {
         console.log("Map is ready!");
 
-        var markerList: any[] = [];
+        this.markerList = [];
         
         locations.forEach((loc: Location) => {
-          markerList.push(new google.maps.Marker({
+          this.markerList.push(new google.maps.Marker({
             title: loc.name,
             position: {
               lat: loc.lat,
