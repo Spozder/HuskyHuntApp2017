@@ -1,21 +1,20 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { Store } from '@ngrx/store';
 
-import { GoogleMap, GoogleMaps, GoogleMapOptions,
-  GoogleMapsEvent } from '@ionic-native/google-maps';
-  
-  import { Location } from '../../common/models/location.model';
-  
-  import { AppState } from '../../common/state/app.state';
+import { Location } from '../../common/models/location.model';
+
+import { AppState } from '../../common/state/app.state';
+
+declare var google;
 
 @Component({
   selector: 'page-map',
   templateUrl: 'map.html'
 })
 export class MapPage {
-  map: GoogleMap;
-  mapElement: HTMLElement;
+  @ViewChild("map") mapElement: ElementRef;
+  map: any;
 
   constructor(public navCtrl: NavController, private appStore: Store<AppState>) {
   }
@@ -25,41 +24,33 @@ export class MapPage {
   }
 
   loadMap() {
-    this.mapElement = document.getElementById('map');
-
-    let mapOptions: GoogleMapOptions = {
-      camera: {
-        target: {
-          lat: 43.0741904,
-          lng: -89.3809802
-        },
-        zoom: 18,
-        tilt: 30
-      }
+    
+    let mapOptions = {
+      center: {
+        lat: 42.3379668,
+        lng: -71.0991816
+      },
+      zoom: 14,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
     };
 
-    this.map = new GoogleMap(this.mapElement, mapOptions);
+    this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
     
     this.appStore.select('location', 'locationList').subscribe((locations: [Location]) => {
-      this.map.one(GoogleMapsEvent.MAP_READY).then(() => {
+      google.maps.event.addListenerOnce(this.map, 'idle', () => {
         console.log("Map is ready!");
+
+        var markerList: any[] = [];
         
         locations.forEach((loc: Location) => {
-          this.map.addMarker({
+          markerList.push(new google.maps.Marker({
             title: loc.name,
-            icon: 'blue',
-            animation: 'DROP',
             position: {
               lat: loc.lat,
               lng: loc.lng
-            }
-          })
-
-          .then(marker => {
-            marker.on(GoogleMapsEvent.MARKER_CLICK).subscribe(() => {
-              alert('clicked');
-            });
-          });
+            },
+            map: this.map
+          }));
         });
       });
     });
