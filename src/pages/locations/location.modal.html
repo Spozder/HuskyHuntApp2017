@@ -16,7 +16,7 @@
     <div #locMap id="locMap"></div>
     <div id="locInfo">
         <h2>{{loc.address}}</h2>
-        <button ion-button round>Navigate</button> <br/>
+        <button ion-button round (click)="navigateToLoc()">Navigate</button> <br/>
         <button ion-button round>Found It! Upload Picture</button>
     </div>
   </ion-content>

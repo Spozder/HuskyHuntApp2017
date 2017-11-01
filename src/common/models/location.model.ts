@@ -11,10 +11,10 @@ export interface Location {
 
 export const mockLocations: [Location] = [
     {
-        name: 'Fake Location #1',
-        lat: 42.3379668,
-        lng: -71.0991816,
-        address: '111 Location St',
+        name: 'Isabella Stewart Gardner Museum',
+        lat: 42.33818,
+        lng: -71.099121,
+        address: 'Isabella Stewart Gardner Museum, Evans Way, Boston, MA, United States',
         hint: mockHints[0],
         assignment: 1
     },

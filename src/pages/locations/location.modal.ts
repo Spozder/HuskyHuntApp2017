@@ -63,4 +63,8 @@ declare var google;
     dismiss() {
       this.store.dispatch(new CloseLocationModalAction());
     }
+
+    navigateToLoc() {
+        window.open('http://maps.google.com?q=' + this.loc.address, '_system');
+    }
   }
