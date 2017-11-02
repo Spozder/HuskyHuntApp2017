@@ -8,7 +8,7 @@ import { NavController, ModalController, NavParams, ViewController } from 'ionic
 import { Hint } from '../../common/models/hint.model';
 
 import { AppState } from '../../common/state/app.state';
-import { OpenNewHintModalAction, CloseNewHintModalAction } from '../../common/state/hint.actions';
+import { OpenNewHintModalAction, CloseNewHintModalAction, SubmitNewHintAction } from '../../common/state/hint.actions';
 
 @Component({
     selector: 'add-hint-modal',
@@ -25,12 +25,17 @@ export class AddHintModal {
             }
         });
         this.newHintFormGroup = this.formBuilder.group({
-            id: [0, Validators.required],
+            id: [Validators.required],
             text: ['', Validators.required],
         });
     }
 
     dismiss() {
         this.store.dispatch(new CloseNewHintModalAction());
+    }
+
+    submitNewHint() {
+        this.store.dispatch(new SubmitNewHintAction(this.newHintFormGroup.value));
+        this.dismiss();
     }
 }

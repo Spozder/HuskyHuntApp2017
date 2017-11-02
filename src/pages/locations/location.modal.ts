@@ -8,7 +8,11 @@ import { Location } from '../../common/models/location.model';
 
 import { AppState } from '../../common/state/app.state';
 import { LocationDetailsModalState } from '../../common/state/location.state';
-import { CloseLocationModalAction, OpenLocaitonModalAction } from '../../common/state/location.actions'; 
+import {
+    CloseLocationModalAction,
+    OpenLocaitonModalAction,
+    FoundLocationAction
+} from '../../common/state/location.actions'; 
 
 declare var google;
 
@@ -66,5 +70,10 @@ export class LocationDetailsModal {
 
     navigateToLoc() {
         window.open('http://maps.google.com?q=' + this.loc.address, '_system');
+    }
+
+    foundLocation(loc: Location) {
+        this.store.dispatch(new FoundLocationAction(loc));
+        this.store.dispatch(new CloseLocationModalAction());
     }
 }

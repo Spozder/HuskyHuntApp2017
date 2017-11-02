@@ -1,6 +1,11 @@
 <ion-header>
   <ion-navbar>
     <ion-title>Hints</ion-title>
+    <ion-buttons end>
+        <button ion-button icon-only>
+          <ion-icon name="refresh"></ion-icon>
+        </button>
+      </ion-buttons>
   </ion-navbar>
 </ion-header>
 
@@ -15,9 +20,9 @@
     update any existing page or create new pages.
   </p>
   <ion-list>
-    <ion-item *ngFor="let hint of hints | async;trackBy: hintTrackByFn">
-      {{hint.text}}
-    </ion-item>
+    <button ion-item text-wrap *ngFor="let hint of hints | async;trackBy: hintTrackByFn" (click)="openSolveHintModal(hint)">
+      <strong>{{hint.id}}</strong>: {{hint.text}}
+    </button>
   </ion-list>
   <ion-fab right bottom>
     <button ion-fab (click)="openAddHintModal()"><ion-icon name="add"></ion-icon></button>

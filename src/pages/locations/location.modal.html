@@ -17,6 +17,6 @@
     <div id="locInfo">
         <h2>{{loc.address}}</h2>
         <button ion-button round (click)="navigateToLoc()">Navigate</button> <br/>
-        <button ion-button round>Found It! Upload Picture</button>
+        <button ion-button round (click)="foundLocation(loc)">Found It!</button>
     </div>
   </ion-content>

@@ -2,6 +2,7 @@ import { Location, mockLocations } from './../models/location.model';
 import {
     LocationAction,
     OpenLocaitonModalAction,
+    FoundLocationAction,
     LocationActionTypes
 } from './location.actions';
 
@@ -11,7 +12,7 @@ export interface LocationDetailsModalState {
 }
 
 export interface LocationState {
-    locationList: [Location];
+    locationList: Location[];
     detailsModal: LocationDetailsModalState;
 }
 
@@ -38,6 +39,10 @@ export function locationReducer(state: LocationState = initialLocationState,
                     open: false,
                     loc: mockLocations[0]
                 }};
+            }
+            case LocationActionTypes.FOUND_LOCATION: {
+                let loadAction = action as FoundLocationAction;
+                return {...state, locationList: [...state.locationList].filter((l) => l != loadAction.payload)};
             }
             default:
                 return state;

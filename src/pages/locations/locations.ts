@@ -17,7 +17,7 @@ import { CloseLocationModalAction, OpenLocaitonModalAction } from '../../common/
   templateUrl: 'locations.html'
 })
 export class LocationsPage {
-  locations: Observable<[Location]>;
+  locations: Observable<Location[]>;
 
   constructor(public modalCtrl: ModalController,
     public navCtrl: NavController, private store: Store<AppState>) {
