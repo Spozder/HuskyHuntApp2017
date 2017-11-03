@@ -38,10 +38,14 @@ export class MapPage {
 
     this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
     
-    this.appStore.select('location', 'locationList').subscribe((locations: [Location]) => {
-      google.maps.event.addListenerOnce(this.map, 'idle', () => {
+    google.maps.event.addListenerOnce(this.map, 'idle', () => {
+      console.log("Location list changed");
+      this.appStore.select('location', 'locationList').subscribe((locations: Location[]) => {
         console.log("Map is ready!");
 
+        this.markerList.forEach(element => {
+          element.setMap(null);
+        });
         this.markerList = [];
         
         locations.forEach((loc: Location) => {

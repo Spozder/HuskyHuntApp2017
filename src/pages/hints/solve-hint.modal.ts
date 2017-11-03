@@ -53,7 +53,6 @@ export class SolveHintModal {
             this.newLoc.address = data.result.description;
             this.newLoc.lat = data.geo.lat;
             this.newLoc.lng = data.geo.lng;
-            console.log(JSON.stringify(data.result));
         });
         modal.present();
     }
