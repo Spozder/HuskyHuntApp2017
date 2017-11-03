@@ -1,7 +1,7 @@
 <ion-header>
         <ion-toolbar>
             <ion-title>
-            Solve Hint!
+            Solve Hint #{{hintToSolve.id}}
             </ion-title>
             <ion-buttons start>
             <button ion-button (click)="dismiss()">
@@ -14,7 +14,16 @@
     <ion-content>
         <ion-list>
             <ion-item>
-                <ion-input (click)="showAddressModal()" [(ngModel)]="address.place"type="text" placeholder="Pick an address"></ion-input>
+                <ion-input (click)="showAddressModal()" [(ngModel)]="newLoc.address"type="text" placeholder="Pick an address"></ion-input>
             </ion-item>
         </ion-list>
+        <h2>Location information: </h2>
+        <ion-list>
+            <ion-item>Name: {{newLoc.name}}</ion-item>
+            <ion-item>Address: {{newLoc.address}}</ion-item>
+            <ion-item>Latitude: {{newLoc.lat}}</ion-item>
+            <ion-item>Longitude: {{newLoc.lng}}</ion-item>
+            <ion-item>Hint: {{newLoc.hint.text}}</ion-item>
+        </ion-list>
+        <button ion-button round (click)=submit() [disabled]="!isLocationValid()">Submit</button>
     </ion-content>

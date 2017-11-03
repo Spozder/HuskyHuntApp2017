@@ -3,6 +3,7 @@ import {
     HintAction,
     SubmitNewHintAction,
     OpenSolveHintModalAction,
+    SolveHintAction,
     HintActionTypes
 } from './hint.actions'
 
@@ -50,6 +51,10 @@ export function hintReducer(state: HintState = initialHintState, action: HintAct
                 open: false,
                 hint: mockHints[0]
             }};
+        }
+        case HintActionTypes.SOLVE_HINT: {
+            let loadAction = action as SolveHintAction;
+            return {...state, hintList: [...state.hintList].filter((h: Hint) => h != loadAction.payload.hint)};
         }
         default:
             return state;

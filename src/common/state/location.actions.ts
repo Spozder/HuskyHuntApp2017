@@ -4,7 +4,8 @@ import { Location } from '../models/location.model';
 export const LocationActionTypes = {
     OPEN_MODAL: '[Location] Open Location Details Modal',
     CLOSE_MODAL: '[Location] Close Location Details Modal',
-    FOUND_LOCATION: '[Location] Found location'
+    FOUND_LOCATION: '[Location] Found location',
+    ADD_LOCATION: '[Location] Add New Location'
 };
 
 export class OpenLocaitonModalAction implements Action {
@@ -28,5 +29,13 @@ export class FoundLocationAction implements Action {
     }
 }
 
-export type LocationAction = OpenLocaitonModalAction | CloseLocationModalAction |
-    FoundLocationAction;
+export class AddLocationAction implements Action {
+    readonly type = LocationActionTypes.ADD_LOCATION;
+
+    constructor(public payload: Location) {
+    }
+}
+
+export type LocationAction = OpenLocaitonModalAction |
+    CloseLocationModalAction | FoundLocationAction |
+    AddLocationAction;
