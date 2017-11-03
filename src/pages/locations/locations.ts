@@ -13,7 +13,8 @@ import { LocationDetailsModalState } from '../../common/state/location.state';
 import {
   GetLocationsRequestAction,
   CloseLocationModalAction,
-  OpenLocaitonModalAction
+  OpenLocaitonModalAction,
+  SetDistanceSortRequestAction
 } from '../../common/state/location.actions';
 import { GetHintsRequestAction } from '../../common/state/hint.actions';
 
@@ -46,6 +47,10 @@ export class LocationsPage {
   refresh() {
     this.store.dispatch(new GetHintsRequestAction());
     this.store.dispatch(new GetLocationsRequestAction());
+  }
+
+  sortByDistance() {
+    this.store.dispatch(new SetDistanceSortRequestAction());
   }
 
 }

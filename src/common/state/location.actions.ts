@@ -12,7 +12,10 @@ export const LocationActionTypes = {
     ADD_LOCATION_SUCCEDED: '[Locatin] Add Location Succeded',
     ADD_LOCATION_FAILED: '[Location] Add Location Failed',
     REMOVE_LOCATION_SUCCEDED: '[Locatoin] Remove Location Succeded',
-    REMOVE_LOCATION_FAILED: '[Location] Remove Location Failed'
+    REMOVE_LOCATION_FAILED: '[Location] Remove Location Failed',
+    SET_DISTANCE_SORT_REQUEST: '[Location] Set Distance Sort Request',
+    SET_DISTANCE_SORT_SUCCEEDED: '[Location] Set Distance Sort Succeeded',
+    SET_DISTANCE_SORT_FAILED: '[Locatoin] Set Distance Sort Failed'
 };
 
 export class OpenLocaitonModalAction implements Action {
@@ -92,8 +95,31 @@ export class RemoveLocationFailedAction implements Action {
     }
 }
 
+export class SetDistanceSortRequestAction implements Action {
+    readonly type = LocationActionTypes.SET_DISTANCE_SORT_REQUEST;
+
+    constructor() {
+    }
+}
+
+export class SetDistanceSortSucceededAction implements Action {
+    readonly type = LocationActionTypes.SET_DISTANCE_SORT_SUCCEEDED;
+
+    constructor(public payload: {lat: number, lng: number}) {
+    }
+}
+
+export class SetDistanceSortFailedAction implements Action {
+    readonly type = LocationActionTypes.SET_DISTANCE_SORT_SUCCEEDED;
+
+    constructor(public payload: {error: string}) {
+    }
+}
+
 export type LocationAction = OpenLocaitonModalAction |
     CloseLocationModalAction | FoundLocationAction |
     AddLocationAction | GetLocationsRequestAction |
     GetLocationsSucceededAction | GetLocationFailedAction |
-    RemoveLocationSucceededAction | RemoveLocationFailedAction;
+    RemoveLocationSucceededAction | RemoveLocationFailedAction |
+    SetDistanceSortRequestAction | SetDistanceSortSucceededAction |
+    SetDistanceSortFailedAction;

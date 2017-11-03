@@ -5,7 +5,8 @@ import {
     FoundLocationAction,
     LocationActionTypes,
     AddLocationAction,
-    GetLocationsSucceededAction
+    GetLocationsSucceededAction,
+    SetDistanceSortSucceededAction
 } from './location.actions';
 
 export interface LocationDetailsModalState {
@@ -25,6 +26,23 @@ export const initialLocationState = {
         loc: mockLocations[0]
     }
 };
+
+declare var google;
+
+function sortByDistance(locList: Location[], pos: {lat: number, lng: number}): Location[] {
+    console.log(locList);
+    console.log(pos);
+    return locList.sort((loc1, loc2) => {
+        if (google.maps.geometry.spherical.computeDistanceBetween(
+            new google.maps.LatLng({lat: loc1.lat, lng: loc1.lng}), new google.maps.LatLng(pos)) <
+        google.maps.geometry.spherical.computeDistanceBetween(
+            new google.maps.LatLng({lat: loc2.lat, lng: loc2.lng}), new google.maps.LatLng(pos))) {
+            return -1;
+        } else {
+            return 1;
+        }
+    });
+}
 
 export function locationReducer(state: LocationState = initialLocationState,
     action: LocationAction): LocationState {
@@ -53,6 +71,10 @@ export function locationReducer(state: LocationState = initialLocationState,
             case LocationActionTypes.GET_LOCATIONS_SUCCEEDED: {
                 let loadAction = action as GetLocationsSucceededAction;
                 return {...state, locationList: [...loadAction.payload]};
+            }
+            case LocationActionTypes.SET_DISTANCE_SORT_SUCCEEDED: {
+                let loadAction = action as SetDistanceSortSucceededAction;
+                return {...state, locationList: sortByDistance([...state.locationList], loadAction.payload)};
             }
             default:
                 return state;

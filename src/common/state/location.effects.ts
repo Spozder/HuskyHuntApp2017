@@ -8,6 +8,8 @@ import { Action } from '@ngrx/store';
 import { Actions, Effect } from '@ngrx/effects';
 import { of } from 'rxjs/observable/of';
 
+import { Geolocation } from '@ionic-native/geolocation';
+
 import {
     LocationActionTypes,
     GetLocationsSucceededAction,
@@ -17,14 +19,16 @@ import {
     AddLocationFailedAction,
     FoundLocationAction,
     RemoveLocationSucceededAction,
-    RemoveLocationFailedAction
+    RemoveLocationFailedAction,
+    SetDistanceSortSucceededAction,
+    SetDistanceSortFailedAction
 } from './location.actions';
 
 import { apiBase } from '../config';
 
 @Injectable()
 export class LocationEffects {
-    constructor(private http: Http, private actions: Actions) {
+    constructor(private http: Http, private actions: Actions, private geo: Geolocation) {
     }
 
     // Listen for locations request action
@@ -56,5 +60,14 @@ export class LocationEffects {
             return this.http.delete(apiBase + "/locations/" + loadAction.payload.hint.id)
                 .map(data => new RemoveLocationSucceededAction())
                 .catch(error => of(new RemoveLocationFailedAction(error)));
+        });
+
+    @Effect() sortByLocatinActionObservable: Observable<Action> = this.actions.ofType(LocationActionTypes.SET_DISTANCE_SORT_REQUEST)
+        .mergeMap<Action, Action>(action => {
+            return this.geo.getCurrentPosition().then((resp) => {
+                return new SetDistanceSortSucceededAction({lat: resp.coords.latitude, lng: resp.coords.longitude});
+            }).catch((error) => {
+                return new SetDistanceSortFailedAction(error);
+            });
         });
 }
