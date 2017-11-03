@@ -55,7 +55,8 @@ export class MapPage {
               lat: loc.lat,
               lng: loc.lng
             },
-            map: this.map
+            map: this.map,
+            label: loc.hint.id.toString()
           }));
         });
       });

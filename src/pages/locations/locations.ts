@@ -10,7 +10,12 @@ import { Location } from '../../common/models/location.model';
 
 import { AppState } from '../../common/state/app.state';
 import { LocationDetailsModalState } from '../../common/state/location.state';
-import { CloseLocationModalAction, OpenLocaitonModalAction } from '../../common/state/location.actions'; 
+import {
+  GetLocationsRequestAction,
+  CloseLocationModalAction,
+  OpenLocaitonModalAction
+} from '../../common/state/location.actions';
+import { GetHintsRequestAction } from '../../common/state/hint.actions';
 
 @Component({
   selector: 'page-locations',
@@ -36,6 +41,11 @@ export class LocationsPage {
 
   openModal(loc: Location) {
     this.store.dispatch(new OpenLocaitonModalAction(loc));
+  }
+
+  refresh() {
+    this.store.dispatch(new GetHintsRequestAction());
+    this.store.dispatch(new GetLocationsRequestAction());
   }
 
 }
