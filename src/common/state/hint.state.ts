@@ -4,7 +4,9 @@ import {
     SubmitNewHintAction,
     OpenSolveHintModalAction,
     SolveHintAction,
-    HintActionTypes
+    HintActionTypes,
+    GetHintsSuccededAction,
+    GetHintsFailedAction
 } from './hint.actions'
 
 export interface SolveHintState {
@@ -55,6 +57,14 @@ export function hintReducer(state: HintState = initialHintState, action: HintAct
         case HintActionTypes.SOLVE_HINT: {
             let loadAction = action as SolveHintAction;
             return {...state, hintList: [...state.hintList].filter((h: Hint) => h != loadAction.payload.hint)};
+        }
+        case HintActionTypes.GET_HINTS_SUCCEEDED: {
+            let loadAction = action as GetHintsSuccededAction;
+            return {...state, hintList: [...loadAction.payload]};
+        }
+        case HintActionTypes.GET_HINTS_FAILED: {
+            let loadAction = action as GetHintsFailedAction;
+            return {...state, hintList: [...mockHints]};
         }
         default:
             return state;

@@ -8,7 +8,14 @@ export const HintActionTypes = {
     OPEN_NEW_HINT_MODAL: '[Hint] Open New Hint Modal',
     CLOSE_NEW_HINT_MODAL: '[Hint] Close New Hint Modal',
     SUBMIT_NEW_HINT: '[Hint] Submit New Hint',
-    SOLVE_HINT: '[Hint] Solve Hint'
+    SOLVE_HINT: '[Hint] Solve Hint',
+    GET_HINTS_REQUEST: '[Hint] Get Hints',
+    GET_HINTS_SUCCEEDED: '[Hint] Get Hints Succeeded',
+    GET_HINTS_FAILED: '[Hint] Get Hints Failed',
+    CREATE_HINT_SUCCEEDED: '[Hint] Create Hint Succeeded',
+    CREATE_HINT_FAILED: '[Hint] Create Hint Failed',
+    DELETE_HINT_SUCCEEDED: '[Hint] Delete Hint Succeeded',
+    DELETE_HINT_FAILED: '[Hint] Delete Hint Failed'
 };
 
 export class OpenNewHintModalAction implements Action {
@@ -53,7 +60,59 @@ export class SolveHintAction implements Action {
     }
 }
 
+export class GetHintsRequestAction implements Action {
+    readonly type = HintActionTypes.GET_HINTS_REQUEST;
+
+    constructor() {
+    }
+}
+
+export class GetHintsSuccededAction implements Action {
+    readonly type = HintActionTypes.GET_HINTS_SUCCEEDED;
+
+    constructor(public payload: Hint[]) {
+    }
+}
+
+export class GetHintsFailedAction implements Action {
+    readonly type = HintActionTypes.GET_HINTS_FAILED;
+
+    constructor(public payload: {error: string}) {
+    }
+}
+
+export class CreateHintSucceededAction implements Action {
+    readonly type = HintActionTypes.CREATE_HINT_SUCCEEDED;
+
+    constructor() {
+    }
+}
+
+export class CreateHintFailedAction implements Action {
+    readonly type = HintActionTypes.CREATE_HINT_FAILED;
+
+    constructor(public payload: {error: string}) {
+    }
+}
+
+export class DeleteHintSucceededAction implements Action {
+    readonly type = HintActionTypes.DELETE_HINT_SUCCEEDED;
+
+    constructor() {
+    }
+}
+
+export class DeleteHintFailedAction implements Action {
+    readonly type = HintActionTypes.DELETE_HINT_FAILED;
+
+    constructor(public payload: {error: string}) {
+    }
+}
+
 export type HintAction = OpenNewHintModalAction |
     CloseNewHintModalAction | SubmitNewHintAction |
     OpenSolveHintModalAction | CloseSolveHintModalAction |
-    SolveHintAction;
+    SolveHintAction | GetHintsRequestAction |
+    GetHintsSuccededAction | GetHintsFailedAction |
+    CreateHintSucceededAction | CreateHintFailedAction |
+    DeleteHintSucceededAction | DeleteHintFailedAction;

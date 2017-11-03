@@ -14,7 +14,8 @@ import { SolveHintState } from '../../common/state/hint.state';
 import {
   OpenSolveHintModalAction,
   OpenNewHintModalAction,
-  CloseNewHintModalAction
+  CloseNewHintModalAction,
+  GetHintsRequestAction
 } from '../../common/state/hint.actions';
 
 @Component({
@@ -51,6 +52,11 @@ export class HintsPage {
 
   openSolveHintModal(hintToSolve: Hint) {
     this.store.dispatch(new OpenSolveHintModalAction(hintToSolve));
+  }
+
+  refresh() {
+    console.log("Hit refresh");
+    this.store.dispatch(new GetHintsRequestAction());
   }
 
 }

@@ -35,7 +35,10 @@ export class AddHintModal {
     }
 
     submitNewHint() {
-        this.store.dispatch(new SubmitNewHintAction(this.newHintFormGroup.value));
+        this.store.dispatch(new SubmitNewHintAction({
+            id: Number(this.newHintFormGroup.value.id),
+            text: this.newHintFormGroup.value.text
+        }));
         this.dismiss();
     }
 }
