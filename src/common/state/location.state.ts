@@ -4,7 +4,8 @@ import {
     OpenLocaitonModalAction,
     FoundLocationAction,
     LocationActionTypes,
-    AddLocationAction
+    AddLocationAction,
+    GetLocationsSucceededAction
 } from './location.actions';
 
 export interface LocationDetailsModalState {
@@ -48,6 +49,10 @@ export function locationReducer(state: LocationState = initialLocationState,
             case LocationActionTypes.ADD_LOCATION: {
                 let loadAction = action as AddLocationAction;
                 return {...state, locationList: [...state.locationList, loadAction.payload]};
+            }
+            case LocationActionTypes.GET_LOCATIONS_SUCCEEDED: {
+                let loadAction = action as GetLocationsSucceededAction;
+                return {...state, locationList: [...loadAction.payload]};
             }
             default:
                 return state;
