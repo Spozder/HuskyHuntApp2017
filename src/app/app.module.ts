@@ -21,6 +21,7 @@ import { initialAppState, appStateReducers } from '../common/state/app.state';
 
 import { EffectsModule } from '@ngrx/effects';
 import { HintEffects } from '../common/state/hint.effects';
+import { LocationEffects } from '../common/state/location.effects';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,7 @@ import { HintEffects } from '../common/state/hint.effects';
     StoreModule.forRoot(appStateReducers, {
       initialState: initialAppState
     }),
-    EffectsModule.forRoot([HintEffects])
+    EffectsModule.forRoot([HintEffects, LocationEffects])
   ],
   bootstrap: [IonicApp],
   entryComponents: [
