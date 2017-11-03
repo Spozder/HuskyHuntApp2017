@@ -9,6 +9,7 @@ import { MapPage } from '../pages/map/map';
 import { HintsPage } from '../pages/hints/hints';
 import { AddHintModal } from '../pages/hints/add-hint.modal';
 import { SolveHintModal } from '../pages/hints/solve-hint.modal';
+import { AutocompleteModal } from '../pages/hints/autocomplete.modal';
 import { TabsPage } from '../pages/tabs/tabs';
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -26,7 +27,8 @@ import { initialAppState, appStateReducers } from '../common/state/app.state';
     TabsPage,
     LocationDetailsModal,
     AddHintModal,
-    SolveHintModal
+    SolveHintModal,
+    AutocompleteModal
   ],
   imports: [
     BrowserModule,
@@ -44,7 +46,8 @@ import { initialAppState, appStateReducers } from '../common/state/app.state';
     TabsPage,
     LocationDetailsModal,
     AddHintModal,
-    SolveHintModal
+    SolveHintModal,
+    AutocompleteModal
   ],
   providers: [
     StatusBar,
