@@ -17,7 +17,7 @@ import {
   CloseNewHintModalAction,
   GetHintsRequestAction
 } from '../../common/state/hint.actions';
-import { GetLocationsAction } from '../../common/state/location.actions';
+import { GetLocationsRequestAction } from '../../common/state/location.actions';
 
 @Component({
   selector: 'page-hints',
@@ -58,7 +58,7 @@ export class HintsPage {
   refresh() {
     console.log("Hit refresh");
     this.store.dispatch(new GetHintsRequestAction());
-    this.store.dispatch(new GetLocationsAction());
+    this.store.dispatch(new GetLocationsRequestAction());
   }
 
 }
