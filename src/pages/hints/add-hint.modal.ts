@@ -25,7 +25,7 @@ export class AddHintModal {
             }
         });
         this.newHintFormGroup = this.formBuilder.group({
-            id: [Validators.required],
+            id: ['', Validators.required],
             text: ['', Validators.required],
         });
     }
