@@ -1,15 +1,15 @@
 export interface Hint {
-    id: number;
-    text: String;
+    id: string;
+    text: string;
 }
 
 export const mockHints: [Hint] = [
     {
-        id: 1,
+        id: '1',
         text: 'Fake Hint #1'
     },
     {
-        id: 2,
+        id: '2',
         text: 'Fake Hint #2'
     }
 ];

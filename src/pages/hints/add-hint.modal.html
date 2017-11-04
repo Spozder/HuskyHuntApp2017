@@ -15,7 +15,7 @@
     <form [formGroup]="newHintFormGroup" (ngSubmit)="submitNewHint()">
         <ion-item>
             <ion-label>Hint #:</ion-label>
-            <ion-input type="number" formControlName="id"></ion-input>
+            <ion-input formControlName="id"></ion-input>
         </ion-item>
         <ion-item>
             <ion-label>Hint Text</ion-label>
